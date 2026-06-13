@@ -280,7 +280,7 @@ function displayResults(topTypes) {
             
             const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
                 ? 'http://localhost:5000' 
-                : 'https://api.dream.lemigo.xyz';
+                : 'https://api.bimo.lemigo.xyz';
 
             fetch(`${API_BASE_URL}/api/save_holland`, {
                 method: 'POST',

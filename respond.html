@@ -457,7 +457,7 @@
 
     async function sendToBot(text) {
       try {
-        const response = await fetch('https://api.dream.lemigo.xyz/api/chat', {
+        const response = await fetch('https://api.bimo.lemigo.xyz/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text: text, name: userName })
@@ -479,7 +479,7 @@
       // Poll every 1 second
       pollInterval = setInterval(async () => {
         try {
-          const response = await fetch('https://api.dream.lemigo.xyz/api/status');
+          const response = await fetch('https://api.bimo.lemigo.xyz/api/status');
           if (response.ok) {
             const data = await response.json();
             updateStatusUI(data.status);
