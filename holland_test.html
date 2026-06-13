@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Hướng Nghiệp HOLLAND - DreamNavigator</title>
+    <link rel="icon" type="image/png" href="assets/logo_maker.png">
+    <meta name="description" content="Bài test hướng nghiệp theo phương pháp HOLLAND (RIASEC) - Khám phá định hướng nghề nghiệp phù hợp với bạn">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Lexend:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #004499;
+            --accent-color: #ff5722;
+            --bg-color: #f9fafb;
+            --bg-darker: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #6b7280;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: url('assets/hero-background.png');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-color);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .header {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.95) 0%, rgba(0, 68, 153, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 122, 34, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.15);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: transparent;
+        }
+
+        /* Test Container */
+        .test-wrapper {
+            background: white;
+            padding: 2rem 0;
+            animation: slideUp 0.5s ease;
+            width: 100%;
+            height: calc(100vh - 120px);
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .start-screen .info-box {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.2);
+        }
+
+        .start-screen .info-box h2 {
+            margin-bottom: 1rem;
+        }
+
+        .start-screen .info-box ul {
+            list-style: none;
+            text-align: left;
+            max-width: 400px;
+            margin: 1rem auto 0;
+        }
+
+        .start-screen .info-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .start-screen .info-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            margin-top: 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 3rem;
+            padding: 0 2rem 2rem 2rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
+        }
+
+        /* Question Section */
+        .question-section {
+            display: none;
+        }
+
+        .question-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        #testScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        #questionsContainer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .option:hover {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(0, 68, 153, 0.05) 100%);
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            cursor: pointer;
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .option.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 68, 153, 0.1) 100%);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 2px solid #e5e7eb;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-nav {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+
+        .btn-nav:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .btn-nav.next {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .btn-nav.next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.4);
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: none;
+            animation: slideUp 0.5s ease;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .results-screen.active {
+            display: block;
+        }
+
+        .results-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .code-display {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 102, 204, 0.25);
+        }
+
+        .code-display .code {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 1rem;
+            letter-spacing: 0.8rem;
+        }
+
+        .code-display .code-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .code-display .code-description {
+            font-size: 1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .scores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 68, 153, 0.1) 100%);
+            padding: 1.75rem;
+            border-radius: 12px;
+            text-align: center;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 102, 204, 0.2);
+        }
+
+        .score-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 102, 204, 0.2);
+            border-left-color: var(--secondary-color);
+        }
+
+        .score-card .type-code {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .score-card .type-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .score-card .score {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .score-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            margin-top: 0.75rem;
+            overflow: hidden;
+        }
+
+        .score-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transition: width 0.6s ease;
+        }
+
+        .career-recommendations {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .career-recommendations h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-size: 1.3rem;
+        }
+
+        .careers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .career-item {
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .career-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .career-item .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .career-item .name {
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .result-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .result-buttons .btn {
+            margin: 0;
+            min-width: 150px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-top: 1px solid rgba(255, 122, 34, 0.2);
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            transition: opacity 0.3s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .test-wrapper {
+                padding: 2rem 1.5rem;
+                min-height: auto;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .code-display {
+                padding: 2rem 1.5rem;
+            }
+
+            .code-display .code {
+                font-size: 2.5rem;
+                letter-spacing: 0.5rem;
+            }
+
+            .scores {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .careers-list {
+                grid-template-columns: 1fr;
+            }
+
+            .option {
+                padding: 1rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn-nav {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .result-buttons {
+                flex-direction: column;
+            }
+
+            .result-buttons .btn {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Test Hướng Nghiệp HOLLAND</h1>
+        <p>Khám phá định hướng nghề nghiệp phù hợp với bạn</p>
+    </div>
+
+    <div class="container">
+        <div class="test-wrapper">
+            <!-- Start Screen -->
+            <div class="start-screen" id="startScreen">
+                <div style="text-align: center;">
+                    <i class="fas fa-compass" style="font-size: 4rem; color: #667eea; margin-bottom: 1rem;"></i>
+                    <h2 style="margin-bottom: 1rem;">Bài Test HOLLAND (RIASEC)</h2>
+                    <p style="font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2rem;">
+                        Phương pháp được công nhận toàn cầu để xác định tính cách và hướng nghiệp phù hợp
+                    </p>
+                </div>
+                <div class="info-box">
+                    <h2>Cách thức hoạt động:</h2>
+                    <ul>
+                        <li>Trả lời 36 câu hỏi về sở thích và kỹ năng</li>
+                        <li>Mỗi câu hỏi có 4 mức độ đồng ý (Không đồng ý - Rất đồng ý)</li>
+                        <li>Thời gian hoàn thành: 5-10 phút</li>
+                        <li>Nhận kết quả với mã RIASEC của bạn</li>
+                        <li>Gợi ý các ngành nghề phù hợp</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" onclick="startTest()">Bắt Đầu Test Ngay</button>
+                <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-muted);">
+                    <i class="fas fa-lock"></i> Thông tin của bạn sẽ được lưu trữ an toàn
+                </p>
+            </div>
+
+            <!-- Test Screen -->
+            <div id="testScreen" style="display: none;">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span id="questionCounter">Câu 1/36</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div id="questionsContainer"></div>
+
+                <div class="nav-buttons">
+                    <button class="btn-nav" onclick="previousQuestion()" id="prevBtn" disabled>
+                        <i class="fas fa-arrow-left"></i> Quay Lại
+                    </button>
+                    <button class="btn-nav next" onclick="nextQuestion()" id="nextBtn">
+                        Tiếp Theo <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="results-screen" id="resultsScreen">
+                <h2 class="results-title">Kết Quả Test HOLLAND Của Bạn</h2>
+
+                <div class="code-display">
+                    <div class="code-name">Mã RIASEC của bạn:</div>
+                    <div class="code" id="resultCode">RIA</div>
+                    <div class="code-description" id="resultDescription">
+                        Bạn là người Thực tế - Tò mò - Sáng tạo
+                    </div>
+                </div>
+
+                <h3>Điểm Số Chi Tiết:</h3>
+                <div class="scores" id="scoresContainer"></div>
+
+                <div class="career-recommendations">
+                    <h3>🎯 Các Ngành Nghề Phù Hợp</h3>
+                    <div class="careers-list" id="careersContainer"></div>
+                </div>
+
+                <div class="result-buttons">
+                    <button class="btn btn-secondary" onclick="downloadResult()">
+                        <i class="fas fa-download"></i> Tải Kết Quả
+                    </button>
+                    <button class="btn btn-primary" onclick="restartTest()">
+                        <i class="fas fa-redo"></i> Làm Lại
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 DreamNavigator - Trợ lý Hướng nghiệp Thông minh</p>
+        <p><a href="index.html">← Quay lại trang chủ</a></p>
+    </footer>
+
+    <script src="holland_test.js"></script>
+    <script src="chatbot-config.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
