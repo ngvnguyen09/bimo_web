@@ -150,11 +150,11 @@ function displayQuestion() {
         const isSelected = answers[currentQuestion] === option.value;
         const selectedClass = isSelected ? 'selected' : '';
         html += `
-            <div class="option ${selectedClass}">
+            <label class="option ${selectedClass}" for="opt${option.value}">
                 <input type="radio" id="opt${option.value}" name="answer" value="${option.value}" 
                        ${isSelected ? 'checked' : ''} onchange="selectAnswer(${option.value})">
-                <label for="opt${option.value}">${option.label}</label>
-            </div>
+                <span>${option.label}</span>
+            </label>
         `;
     });
     
