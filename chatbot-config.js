@@ -7,10 +7,10 @@ window.DREAM_CHATBOT_CONFIG = {
     // - 'ollama': Ollama mac dinh http://localhost:11434/api/chat
     // - 'openai-compatible': LM Studio, llama.cpp server, vLLM... /v1/chat/completions
     // - 'custom': API rieng cua ban, tra ve JSON co reply/text/answer/message
-    provider: 'custom',
+    provider: 'nctv2',
 
-    endpoint: '/api/chat',
-    model: 'gemini-2.0-flash',
+    endpoint: 'https://api.bimo.lemigo.xyz/api/chat_direct',
+    model: 'llama-3.3-70b-versatile',
     timeoutMs: 30000,
     temperature: 0.4,
 
